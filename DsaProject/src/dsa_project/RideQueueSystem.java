@@ -3,12 +3,12 @@ package dsa_project;
 import java.util.*;
 
 class Customer {
-    String name;
-    int priority; 
+    private final String name;
+    private final int priority;
 
     public Customer(String name) {
         this.name = name;
-        this.priority = Integer.MAX_VALUE; 
+        this.priority = Integer.MAX_VALUE;
     }
 
     public Customer(String name, int priority) {
@@ -16,22 +16,30 @@ class Customer {
         this.priority = priority;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
     @Override
     public String toString() {
-        return "Customer{name='" + name + '\'' + ", priority=" + priority + '}';
+        return "Customer{name='" + name + "', priority=" + priority + '}';
     }
 }
 
 class CustomerComparator implements Comparator<Customer> {
     @Override
     public int compare(Customer c1, Customer c2) {
-        return Integer.compare(c1.priority, c2.priority);
+        return Integer.compare(c1.getPriority(), c2.getPriority());
     }
 }
 
 class RideManager {
-    private Queue<Customer> regularQueue; 
-    private PriorityQueue<Customer> priorityQueue; 
+    private final Queue<Customer> regularQueue;
+    private final PriorityQueue<Customer> priorityQueue;
 
     public RideManager() {
         regularQueue = new LinkedList<>();
@@ -53,10 +61,10 @@ class RideManager {
     public void serveNextRide() {
         if (!priorityQueue.isEmpty()) {
             Customer next = priorityQueue.poll();
-            System.out.println("Serving Priority Customer: " + next.name);
+            System.out.println("Serving Priority Customer: " + next.getName());
         } else if (!regularQueue.isEmpty()) {
             Customer next = regularQueue.poll();
-            System.out.println("Serving Regular Customer: " + next.name);
+            System.out.println("Serving Regular Customer: " + next.getName());
         } else {
             System.out.println("No customers to serve.");
         }
@@ -68,20 +76,20 @@ class RideManager {
     }
 }
 
- class RideQueueSystem {
+public class RideQueueSystem {
     public static void main(String[] args) {
         RideManager rideManager = new RideManager();
 
-        rideManager.addRegularRide("Hamza");
-        rideManager.addPriorityRide("Agha", 2); 
-        rideManager.addRegularRide("Asad");
-        rideManager.addPriorityRide("Bhavesh", 1);
+        rideManager.addRegularRide("Agha Mujeeb Memon");
+        rideManager.addPriorityRide("Hamza khan", 2);
+        rideManager.addRegularRide("Bhavesh Kumar");
+        rideManager.addPriorityRide("Asad Ullah khan", 1);
 
-        rideManager.serveNextRide(); 
-        rideManager.serveNextRide(); 
-        rideManager.serveNextRide(); 
-        rideManager.serveNextRide(); 
-        rideManager.serveNextRide(); 
+        rideManager.serveNextRide();
+        rideManager.serveNextRide();
+        rideManager.serveNextRide();
+        rideManager.serveNextRide();
+        rideManager.serveNextRide();
 
         rideManager.displayQueues();
     }
