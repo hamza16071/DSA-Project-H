@@ -38,8 +38,8 @@ class CustomerComparator implements Comparator<Customer> {
 }
 
 class RideManager {
-    private final Queue<Customer> regularQueue;
-    private final PriorityQueue<Customer> priorityQueue;
+    private final Queue<Customer> regularQueue; 
+    private final PriorityQueue<Customer> priorityQueue; 
 
     public RideManager() {
         regularQueue = new LinkedList<>();
@@ -80,17 +80,18 @@ public class RideQueueSystem {
     public static void main(String[] args) {
         RideManager rideManager = new RideManager();
 
-        rideManager.addRegularRide("Agha Mujeeb Memon");
-        rideManager.addPriorityRide("Hamza khan", 2);
+        rideManager.addRegularRide("M Hamza khan");
+        rideManager.addPriorityRide("Zubair nawab", 2);
         rideManager.addRegularRide("Bhavesh Kumar");
-        rideManager.addPriorityRide("Asad Ullah khan", 1);
+        rideManager.addPriorityRide("Asad Ullah Khan", 1);
 
-        rideManager.serveNextRide();
-        rideManager.serveNextRide();
-        rideManager.serveNextRide();
-        rideManager.serveNextRide();
-        rideManager.serveNextRide();
+        rideManager.serveNextRide(); 
+        rideManager.serveNextRide(); 
+        rideManager.serveNextRide(); 
+        rideManager.serveNextRide(); 
+        rideManager.serveNextRide(); 
 
+    
         rideManager.displayQueues();
     }
 }
